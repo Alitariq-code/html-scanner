@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Xperix BioMini Web Agent Service Sample </title>
+</head>
+<body bgcolor="lightblue">
+
+<div>
+<center>
+	
+	<table border="0" width="800px" cellspacing="0" cellpadding="3" align="center" class="txt" style="border:1px solid #000000">
+	<input id="dstatus" type="hidden" value="">
+	<tr><th colspan=4 style="border:1px solid #000000">Xperix BioMini Web Agent Service : Sample Application</th></tr>
+	<tr><th colspan=4 style="border:1px solid #000000"><span id="ds_id" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th></tr>	
+	<tr><th colspan=4 style="border:1px solid #000000"><input type="button" value="Device Info" onClick="Fun_DeviceInfo()"/></th></tr>
+	<tr>
+		<th align=left style="border:1px solid #000000">Connected:<span id="ds_connected" style = "font-size: 15px; font-weight: bold;color:green;"></span></th>
+		<th align=left style="border:1px solid #000000">Make:<span id="ds_make" style = "font-size: 15px; font-weight: bold;color:green;"></span></th>
+		<th align=left style="border:1px solid #000000">Model:<span id="ds_model" style = "font-size: 15px; font-weight: bold;color:green;"></span></th>
+		<th align=left style="border:1px solid #000000">Serial Number:<span id="ds_snumber" style = "font-size: 15px; font-weight: bold;color:green;"></span></th>
+	</tr>
+	<tr>
+	<th align=left style="border:1px solid #000000">Image Format:
+		<select id="imgformat">		
+		<option value="BMP">BMP</option>
+		<option value="JPEG">JPEG</option>
+		<option value="PNG">PNG</option>
+	</select> 
+	</th>
+	<th align=left style="border:1px solid #000000">Template Format:
+		<select id="tempformat">
+			<option value="2001">Xperix</option>
+			<option value="2002">ISO-2005</option>
+			<option value="2006">ISO-2011</option>
+			<option value="2003">ANSI</option>
+		</select> 
+	</th>	
+	<th align=left style="border:1px solid #000000">Finger Position:
+		<select id="fingerPos">
+			<option value="1">Right Thumb</option>
+			<option value="2">Right Index</option>
+			<option value="3">Right Middle</option>
+			<option value="4">Right Ring</option>
+			<option value="5">Right Little</option>
+			<option value="6">Left Thumb</option>
+			<option value="7">Left Index</option>
+			<option value="8">Left Middle</option>
+			<option value="9">Left Ring</option>
+			<option value="10">Left Little</option>
+		</select> 
+	</th>
+	<th align=left style="border:1px solid #000000">
+	<input type="button" value="Capture" onClick="Fun_Capture()"/>
+	</th>
+</tr>
+<tr>	
+	
+	<th colspan=4 align=left style="border:1px solid #000000">
+	Verify Right Thumb and Right Index : <input type="button" value="Verify" onClick="Fun_Verify()"/>
+	</th>
+	</tr>
+	</table>
+	<br>
+		<table border="0" width="800px" cellspacing="0" cellpadding="3" align="center" class="txt" style="border:1px solid #000000">
+		<tr>		
+			<th style="border:1px solid #000000" width=20%>Right Thumb</th>
+			<th style="border:1px solid #000000" width=20%>Right Index</th>
+			<th style="border:1px solid #000000" width=20%>Right Middle</th>
+			<th style="border:1px solid #000000" width=20%>Right Ring</th>
+			<th style="border:1px solid #000000" width=20%>Right Little</th>
+		</tr>
+		<tr>		
+			<th style="border:1px solid #000000" width=20%><img id="img_id1" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate1"></th>
+			<th style="border:1px solid #000000" width=20%><img id="img_id2" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate2"></th>
+			<th style="border:1px solid #000000" width=20%><img id="img_id3" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate3"></th>
+			<th style="border:1px solid #000000" width=20%><img id="img_id4" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate4"></th>
+			<th style="border:1px solid #000000" width=20%><img id="img_id5" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate5"></th>			
+		</tr>
+		<tr>		
+			<th style="border:1px solid #000000" width=20%><span id="nid1" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+			<th style="border:1px solid #000000" width=20%><span id="nid2" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+			<th style="border:1px solid #000000" width=20%><span id="nid3" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+			<th style="border:1px solid #000000" width=20%><span id="nid4" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+			<th style="border:1px solid #000000" width=20%><span id="nid5" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+		</tr>
+		
+		<th colspan=5><hr></th>
+		<tr>
+			<th style="border:1px solid #000000" width=20%>Left Thumb</th>
+			<th style="border:1px solid #000000" width=20%>Left Index</th>
+			<th style="border:1px solid #000000" width=20%>Left Middle</th>
+			<th style="border:1px solid #000000" width=20%>Left Ring</th>
+			<th style="border:1px solid #000000" width=20%>Left Little</th>
+		</tr>
+		<tr>
+			<th style="border:1px solid #000000" width=20%><img id="img_id6" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate6"></th>
+			<th style="border:1px solid #000000" width=20%><img id="img_id7" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate7"></th>
+			<th style="border:1px solid #000000" width=20%><img id="img_id8" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate8"></th>
+			<th style="border:1px solid #000000" width=20%><img id="img_id9" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate9"></th>
+			<th style="border:1px solid #000000" width=20%><img id="img_id10" src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width=150 height=200 /><input type="hidden" id="ftemplate10"></th>
+		</tr>
+		<tr>
+			<th style="border:1px solid #000000" width=20%><span id="nid6" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+			<th style="border:1px solid #000000" width=20%><span id="nid7" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+			<th style="border:1px solid #000000" width=20%><span id="nid8" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+			<th style="border:1px solid #000000" width=20%><span id="nid9" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+			<th style="border:1px solid #000000" width=20%><span id="nid10" style = "font-size: 15px; font-weight: bold;">&nbsp;</span></th>
+		</tr>
+		<tr>
+		</tr>
+		
+		</table>
+	
+	
+</center>
+</div>
+	
+</body>
+</html>
+
+<script>
+
+
+    function Fun_DeviceInfo() {
+
+        var url = "http://127.0.0.1:11001/bmwas/DeviceInfo";
+        var xhr;
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer, return version number
+        {
+            xhr = new XMLHttpRequest();
+        } else {
+            xhr = new XMLHttpRequest();
+        }
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange = function () {
+
+            if (xhr.readyState == 4) {
+                var status = xhr.status;
+
+                if (status == 200) {
+                    var result = JSON.parse(xhr.responseText);
+                    console.log(result);
+					document.getElementById("ds_make").innerText=result.make;
+					document.getElementById("ds_model").innerText=result.model;
+					document.getElementById("ds_connected").innerText=result.isConnected;
+					document.getElementById("ds_snumber").innerText=result.serialnumber;
+                    if (result.isConnected) {
+						document.getElementById("ds_id").innerText ="Scanner is Connected..!";
+                    }
+                    else {
+                       document.getElementById("ds_id").innerText = "Scanner is not Connected..!";
+                    }
+                }
+                else {
+                    alert("Device Info : Xperix BioMini Service is not Ruuning");
+					document.getElementById("ds_id").innerText="Xperix BioMini Service is not Ruuning";
+                }
+            }
+        };
+        xhr.send();
+    }
+
+
+    function Fun_Capture() {  
+		document.getElementById("dstatus").value="capture";
+		document.getElementById("ds_id").innerText ="";
+		
+		var imgf_value=document.getElementById("imgformat").value;
+		var tempf_value=document.getElementById("tempformat").value;
+		var timeout="20000"; 
+        var fakeLevel="0";    // 0-5
+		var detectCore="0";   // 0,1
+		var sensitivity="4";   // 0-7
+		
+		var data = JSON.stringify({
+		 "sensitivity": sensitivity,
+		 "fakeLevel": fakeLevel,
+		 "detectCore": detectCore,
+		 "imgFormat": imgf_value,
+		 "tempFormat": tempf_value,
+		 "timeOut":timeout
+		});
+	 
+	 
+        var xhr;
+		 var url = "http://127.0.0.1:11001/bmwas/Capture";
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer, return version number
+        {
+            //IE browser
+            //xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            xhr = new XMLHttpRequest();
+        } else {
+            //other browser
+            xhr = new XMLHttpRequest();
+        }
+        xhr.open('POST', url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                var status = xhr.status;
+				document.getElementById("dstatus").value="";
+                if (status == 200) {
+                    var result = JSON.parse(xhr.responseText);
+					 console.log(result);
+					if(result.errMsg!="")
+						document.getElementById("ds_id").innerText =result.errMsg;
+                    console.log(result);
+						var finpos_value=document.getElementById("fingerPos").value;
+						var nfid="nid"+finpos_value;
+						var imgid="img_id"+finpos_value;
+						var tempid="ftemplate"+finpos_value;
+
+
+						document.getElementById(imgid).setAttribute('src', "data:image/"+result.imgFormat.toLowerCase()+";base64,"+result.imgData);
+						document.getElementById(nfid).innerText = "Quality:"+result.imgQuality;
+						document.getElementById(tempid).value = result.tempData;
+                }
+                else {
+						alert("Capture : Xperix BioMini Web Agent Service is not Ruuning");
+						document.getElementById("ds_id").innerText="Xperix BioMini Service is not Ruuning";
+                }
+            }
+        };
+        xhr.send(data);
+    }
+	
+	function Fun_Verify() {  
+	
+	   var tempf_value=document.getElementById("tempformat").value;
+	   var template1=document.getElementById("ftemplate1").value;
+	   var template2=document.getElementById("ftemplate2").value;
+	   var mresult="";
+	   if(template1=="")
+	   {
+		alert("Please Capture Right Thumb");
+		return mresult;
+	   }
+	   if(template2=="")
+	   {
+		alert("Please Capture Right Index");
+		return mresult;
+	   }
+	   
+	   
+		var data = JSON.stringify({
+		  "tempFormat": tempf_value,
+		  "template1": template1,
+		  "template2": template2
+		  });
+	 
+	 
+        var xhr;
+		 var url = "http://127.0.0.1:11001/bmwas/Verify";
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer, return version number
+        {
+            //IE browser
+            //xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            xhr = new XMLHttpRequest();
+        } else {
+            //other browser
+            xhr = new XMLHttpRequest();
+        }
+        xhr.open('POST', url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                var status = xhr.status;
+				document.getElementById("dstatus").value="";
+                if (status == 200) {
+                    var result = JSON.parse(xhr.responseText);
+					console.log(result);
+					if(result.errMsg!="")
+						document.getElementById("ds_id").innerText =result.errMsg;
+						mresult=result.mResult;
+						if(result.mResult==true)
+							alert(result.mResult+"Match Found");
+						if(result.mResult==false)
+							alert(result.mResult+"Match Not Found");
+
+                }
+                else {
+						alert("Capture : Xperix BioMini Web Agent Service is not Ruuning");
+						document.getElementById("ds_id").innerText="Xperix BioMini Service is not Ruuning";
+                }
+            }
+        };
+        xhr.send(data);
+		
+		return mresult;
+    }
+	
+</script>
